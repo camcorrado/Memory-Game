@@ -1,0 +1,110 @@
+@font-face {
+  font-family: "Carattere";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/carattere/v7/4iCv6Kp1b9dXlgt_CkvjsGyNPYZvgw.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/barlowcondensed/v12/HTx3L3I-JCGChYJ8VI-L6OO_au7B6xHT2lv0tKk.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Barlow Condensed";
+}
+
+body {
+  background-color: white;
+}
+
+nav {
+  background-color: gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border: 2px solid black;
+}
+
+nav > h1 {
+  font-size: 18px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+li {
+  padding-left: 10px;
+}
+
+li:hover {
+  color: blue;
+}
+
+#title > h1 {
+  font-size: 50px;
+  font-family: "Carattere", sans-serif;
+  text-align: center;
+  margin: 10px auto;
+  width: 40%;
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0),
+      black,
+      rgba(0, 0, 0, 0)
+    )
+    0 0 1 0;
+}
+
+#gameCards {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border: 2px solid black;
+  border-radius: 5%;
+  height: 175px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  box-shadow: 0 0 0 8px white, 0 0 0 12px black;
+  flex-basis: 30%;
+}
+
+.card:hover {
+  background-color: black;
+}
+
+.card > img {
+  margin: auto;
+  max-width: 100%;
+}
+
+.hidden {
+  display: none;
+}
