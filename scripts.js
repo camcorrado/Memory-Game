@@ -3,6 +3,13 @@ onLoad = () => {
 };
 
 addCards = (cardType) => {
+  document.getElementById(
+    "timer"
+  ).innerHTML = `<span id="hours">00</span>:<span id="minutes">00</span>:<span
+            id="seconds"
+            >00</span
+          >`;
+  document.getElementById("attempts").innerHTML = 0;
   let allCards = [];
   let cards1 = cardType.map((card) => {
     return `<div class="card ${card.name} 1">
@@ -31,23 +38,48 @@ addCards = (cardType) => {
       })
     );
   });
+  document.querySelector(".reset").addEventListener(
+    "click",
+    (handleClick = () => {
+      document.querySelectorAll(".locked").forEach((card) => {
+        card.classList.add("hidden");
+        card.classList.remove("locked");
+      });
+      document.querySelectorAll(".flipped").forEach((card) => {
+        card.classList.add("hidden");
+        card.classList.remove("flipped");
+      });
+      gameTimer("reset");
+      document.getElementById("congratulations").innerHTML = ``;
+      document.getElementById("attempts").innerHTML = 0;
+    })
+  );
 };
 
 flipCard = (card, num) => {
   let clickedCard = document.getElementById(`${card} ${num}`);
   let cardsFlipped = document.querySelectorAll(".flipped").length;
-  if (cardsFlipped === 0 && clickedCard.classList.contains("hidden")) {
-    clickedCard.classList.remove("hidden");
-    clickedCard.classList.add("flipped");
-    console.log("flipped first card");
-  } else if (cardsFlipped === 1 && clickedCard.classList.contains("hidden")) {
-    clickedCard.classList.remove("hidden");
-    clickedCard.classList.add("flipped");
-    console.log("flipped second card");
-    console.log("comparing cards");
-    setTimeout(() => {
-      checkForMatch(`${card} ${num}`);
-    }, 1000);
+  let allCards = document.querySelectorAll(".card").length;
+  let cardsLocked = document.querySelectorAll(".locked").length;
+  if (allCards !== cardsLocked) {
+    let attempts = parseInt(document.getElementById("attempts").innerHTML) + 1;
+    document.getElementById("attempts").innerHTML = attempts;
+    if (attempts === 1) {
+      gameTimer("start");
+    }
+    if (cardsFlipped === 0 && clickedCard.classList.contains("hidden")) {
+      clickedCard.classList.remove("hidden");
+      clickedCard.classList.add("flipped");
+      console.log("flipped first card");
+    } else if (cardsFlipped === 1 && clickedCard.classList.contains("hidden")) {
+      clickedCard.classList.remove("hidden");
+      clickedCard.classList.add("flipped");
+      console.log("flipped second card");
+      console.log("comparing cards");
+      setTimeout(() => {
+        checkForMatch(`${card} ${num}`);
+      }, 1000);
+    }
   }
 };
 
@@ -59,6 +91,7 @@ checkForMatch = () => {
     document.getElementById(cards[1].id).classList.remove("flipped");
     document.getElementById(cards[1].id).classList.add("locked");
     console.log("cards match");
+    checkForWin();
   } else {
     document.getElementById(cards[0].id).classList.remove("flipped");
     document.getElementById(cards[0].id).classList.add("hidden");
@@ -67,6 +100,58 @@ checkForMatch = () => {
     console.log("cards do not match");
   }
 };
+
+checkForWin = () => {
+  console.log("checking for win");
+  if (
+    document.querySelectorAll(".hidden").length === 0 &&
+    document.querySelectorAll(".flipped").length === 0
+  ) {
+    console.log("win!");
+    document.getElementById(
+      "congratulations"
+    ).innerHTML = `Congratulations! You've matched all cards!`;
+    gameTimer("win");
+  }
+};
+
+startTimer = () => {
+  console.log("timer ticking");
+  let second = parseInt(document.getElementById("seconds").innerHTML);
+  pad = (value) => {
+    return value > 9 ? value : "0" + value;
+  };
+  document.getElementById("seconds").innerHTML = pad(++second % 60);
+  document.getElementById("minutes").innerHTML = pad(parseInt(second / 60, 10));
+  document.getElementById("hours").innerHTML = pad(parseInt(second / 600, 10));
+};
+
+gameTimer = (val) => {
+  if (val === "start") {
+    console.log("timer started");
+    interval = setInterval(startTimer, 1000);
+    document.getElementById(
+      "timer"
+    ).innerHTML = `<span id="hours">00</span>:<span id="minutes">00</span>:<span
+            id="seconds"
+            >00</span
+          >`;
+  } else if (val === "reset") {
+    console.log("timer stopped");
+    document.getElementById(
+      "timer"
+    ).innerHTML = `<span id="hours">00</span>:<span id="minutes">00</span>:<span
+            id="seconds"
+            >00</span
+          >`;
+    clearInterval(interval);
+  } else {
+    console.log("timer stopped");
+    clearInterval(interval);
+  }
+};
+
+let interval;
 
 let shapes = [
   {

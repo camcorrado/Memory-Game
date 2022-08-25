@@ -87,13 +87,13 @@ li:hover {
 .card {
   border: 2px solid black;
   border-radius: 5%;
-  height: 175px;
+  height: 300px;
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px;
   box-shadow: 0 0 0 8px white, 0 0 0 12px black;
-  flex-basis: 30%;
 }
 
 .card:hover {
