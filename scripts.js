@@ -118,12 +118,25 @@ checkForWin = () => {
 startTimer = () => {
   console.log("timer ticking");
   let second = parseInt(document.getElementById("seconds").innerHTML);
+  let minute = parseInt(document.getElementById("minutes").innerHTML);
+  let hour = parseInt(document.getElementById("hours").innerHTML);
   pad = (value) => {
     return value > 9 ? value : "0" + value;
   };
-  document.getElementById("seconds").innerHTML = pad(++second % 60);
-  document.getElementById("minutes").innerHTML = pad(parseInt(second / 60, 10));
-  document.getElementById("hours").innerHTML = pad(parseInt(second / 600, 10));
+  document.getElementById("seconds").innerHTML = pad(++second);
+  if (second === 60) {
+    document.getElementById("seconds").innerHTML = pad(00);
+    document.getElementById("minutes").innerHTML = pad(++minute);
+  } else if (minute === 60) {
+    document.getElementById("minutes").innerHTML = pad(00);
+    document.getElementById("hours").innerHTML = pad(++hour);
+  } else if (hour === 99) {
+    console.log("timer stopped");
+    clearInterval(interval);
+    document.getElementById(
+      "timer"
+    ).innerHTML = `<span>Maybe it's time to take a break...</span>`;
+  }
 };
 
 gameTimer = (val) => {
