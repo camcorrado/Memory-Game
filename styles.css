@@ -97,7 +97,7 @@ li:hover {
 }
 
 .card:hover {
-  background-color: black;
+  box-shadow: 0 0 0 8px black, 0 0 0 12px black;
 }
 
 .card > img {
@@ -105,6 +105,67 @@ li:hover {
   max-width: 100%;
 }
 
+#playingCards > img {
+  clip-path: inset(5px 5px 5px 5px);
+}
+
+#tarot > img {
+  clip-path: inset(5px 5px 5px 5px);
+  height: 100%;
+}
+
+#pokemon > img {
+  height: 100px;
+}
+
 .hidden {
   display: none;
+}
+
+.incorrect {
+  animation: shake 0.5s ease-in-out;
+}
+
+.correct {
+  animation: gradient 15s ease infinite;
+  background: linear-gradient(-45deg, white, gold, white);
+  box-shadow: 0 0 0 8px gold, 0 0 0 12px black !important;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-10px);
+  }
+
+  40% {
+    transform: translateX(10px);
+  }
+
+  60% {
+    transform: translateX(-10px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
