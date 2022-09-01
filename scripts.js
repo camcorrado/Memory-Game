@@ -11,11 +11,13 @@ onLoad = () => {
       })
     );
   });
-  document.querySelector(".reset").addEventListener(
+  document.getElementById("resetButton").addEventListener(
     "click",
     (handleClick = () => {
       gameTimer("reset");
-      shuffleCards();
+      let deck =
+        document.getElementById("gameCards").firstElementChild.classList[3];
+      addCards(decks[deck], deck);
       document.querySelectorAll(".cardContent").forEach((card) => {
         card.classList.add("hidden");
         card.classList.remove("flipped");
@@ -23,17 +25,46 @@ onLoad = () => {
       });
     })
   );
+  document.getElementById("howToPlayButton").firstElementChild.addEventListener(
+    "click",
+    (handleClick = () => {
+      let button = document.getElementById("howToPlay");
+      if (button.classList[0] === "dropdownHidden") {
+        button.classList.add("dropdownVisible");
+        button.classList.remove("dropdownHidden");
+      } else {
+        button.classList.add("dropdownHidden");
+        button.classList.remove("dropdownVisible");
+      }
+    })
+  );
+
+  document
+    .getElementById("changeCardStyleButton")
+    .firstElementChild.addEventListener(
+      "click",
+      (handleClick = () => {
+        let button = document.getElementById("changeCardStyle");
+        if (button.classList[0] === "dropdownHidden") {
+          button.classList.add("dropdownVisible");
+          button.classList.remove("dropdownHidden");
+        } else {
+          button.classList.add("dropdownHidden");
+          button.classList.remove("dropdownVisible");
+        }
+      })
+    );
 };
 
 addCards = (deck, id) => {
   let allCards = [];
   let cards1 = deck.map((card) => {
-    return `<div id=${id} class="card ${card.name} 1">
+    return `<div id=${id} class="card ${card.name} 1 ${id}">
                 <img src=${card.image} alt=${card.name} id="${card.name} 1" class="cardContent hidden">
             </div>`;
   });
   let cards2 = deck.map((card) => {
-    return `<div id=${id} class="card ${card.name} 2">
+    return `<div id=${id} class="card ${card.name} 2 ${id}">
                 <img src=${card.image} alt=${card.name} id="${card.name} 2" class="cardContent hidden">
             </div>`;
   });
@@ -43,19 +74,9 @@ addCards = (deck, id) => {
   cards2.forEach((card) => {
     allCards.push(card);
   });
-  document.getElementById("gameCards").innerHTML = allCards;
-  shuffleCards();
-  console.log("cards dealt");
-};
-
-shuffleCards = () => {
-  console.log("cards shuffled");
-  document.getElementById("gameCards").innerHTML = document
-    .getElementById("gameCards")
-    .innerHTML.split(",")
+  document.getElementById("gameCards").innerHTML = allCards
     .sort(() => Math.random() - 0.5)
     .join("");
-
   document.querySelectorAll("div.card").forEach((card) => {
     card.addEventListener(
       "click",
@@ -64,6 +85,7 @@ shuffleCards = () => {
       })
     );
   });
+  console.log("cards dealt");
 };
 
 flipCard = (card, num) => {
@@ -133,6 +155,7 @@ checkForWin = () => {
     document.getElementById(
       "congratulations"
     ).innerHTML = `Congratulations! You've matched all cards!`;
+    document.getElementById("resetButton").innerHTML = `Play Again!`;
     gameTimer("win");
   }
 };
@@ -170,17 +193,15 @@ gameTimer = (val) => {
     console.log("timer started");
     interval = setInterval(startTimer, 1000);
     document.getElementById("timer").innerHTML = timerWipe;
-  } else if (val === "reset") {
+  } else {
     console.log("timer stopped");
+    document.getElementById("resetButton").innerHTML = `Reset`;
     document.querySelectorAll(".correct").forEach((card) => {
       card.classList.remove("correct");
     });
     document.getElementById("timer").innerHTML = timerWipe;
     document.getElementById("congratulations").innerHTML = ``;
     document.getElementById("attempts").innerHTML = 0;
-    clearInterval(interval);
-  } else {
-    console.log("timer stopped");
     clearInterval(interval);
   }
 };

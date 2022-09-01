@@ -40,8 +40,34 @@ nav {
   border: 2px solid black;
 }
 
-nav > h1 {
-  font-size: 18px;
+nav h1 {
+  margin: 0 0 5px 0;
+}
+
+nav p {
+  margin: 0 0 5px 0;
+}
+
+.dropdownHidden {
+  display: none;
+}
+
+.dropdownVisible {
+  display: block !important;
+}
+
+#changeCardStyleButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#changeCardStyleButton h1 {
+  text-align: right;
+}
+
+#changeCardStyle {
+  margin: 0;
 }
 
 ul {
@@ -73,6 +99,37 @@ li:hover {
       rgba(0, 0, 0, 0)
     )
     0 0 1 0;
+}
+
+#gameInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0),
+      black,
+      rgba(0, 0, 0, 0)
+    )
+    0 0 1 0;
+  padding: 10px;
+}
+
+.reset {
+  max-width: 100px;
+}
+
+#winner {
+  margin: 70px auto;
+  padding: 20px;
+  background: gold;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 1s ease-in-out;
 }
 
 #gameCards {
