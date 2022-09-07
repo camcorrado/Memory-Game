@@ -147,7 +147,7 @@ header {
 
 #gameInfo {
   margin-top: 8px;
-  height: 175px;
+  height: 190px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
