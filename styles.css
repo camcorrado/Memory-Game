@@ -28,7 +28,8 @@
 }
 
 body {
-  background-color: white;
+  margin: 0;
+  background-color: black;
 }
 
 body.preload * {
@@ -41,9 +42,10 @@ nav {
   top: 0;
   left: 0;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  padding: 5px 10px;
+  padding: 5px 5px;
+  max-height: 75px;
+  background-color: white;
 }
 
 nav h1 {
@@ -93,10 +95,9 @@ nav ul {
 ul {
   list-style: none;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: space-evenly;
+  align-items: center;
   padding: 0px;
 }
 
@@ -106,29 +107,53 @@ li {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 4px 4px;
+  width: 100px;
+  background-color: black;
+  box-shadow: 0 0 0 1px white, 0 0 0 2px black;
 }
 
 li:hover {
   color: blue;
 }
 
+#difficulty\ shapes {
+  color: lightblue;
+}
+
+#difficulty\ shapesAndColors {
+  color: green;
+}
+
+#difficulty\ tarot {
+  color: yellow;
+}
+
+#difficulty\ playingCards {
+  color: orange;
+}
+
+#difficulty\ pokemon {
+  color: red;
+}
+
 header {
-  padding: 5px 10px;
+  padding: 0px 10px;
+  background-color: white;
 }
 
 #gameInfo {
+  margin-top: 8px;
   height: 175px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   border-width: 1px;
   border-style: solid;
-  border-image: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0),
-      black,
-      rgba(0, 0, 0, 0)
-    )
+  border-image: linear-gradient(90deg, rgba(0, 0, 0, 0), gold, rgba(0, 0, 0, 0))
     0 0 1 0;
 }
 
@@ -136,7 +161,7 @@ header {
   font-size: 50px;
   font-family: "Carattere", sans-serif;
   text-align: center;
-  margin: 0px auto 10px auto;
+  margin: 12px auto 10px auto;
   width: 30%;
   border-width: 1px;
   border-style: solid;
@@ -147,6 +172,8 @@ header {
       rgba(0, 0, 0, 0)
     )
     0 0 1 0;
+  line-height: 0.55;
+  filter: drop-shadow(0 0.1rem gold);
 }
 
 #score {
@@ -155,6 +182,7 @@ header {
   justify-content: center;
   align-items: center;
   padding-bottom: 10px;
+  margin: auto;
 }
 
 #score div {
@@ -166,7 +194,7 @@ button {
 }
 
 main {
-  padding: 5px 10px;
+  margin: 10px 0px;
 }
 
 #modalContainer {
@@ -179,7 +207,6 @@ main {
   left: 0;
   text-align: center;
   z-index: 2;
-  box-shadow: 0 0 0 8px gold, 0 0 0 12px black;
   animation: fadeIn 0.5s;
 }
 
@@ -192,10 +219,10 @@ main {
   flex-direction: column;
   justify-content: center;
   background: linear-gradient(-45deg, white, gold, white);
-  box-shadow: 0 0 0 8px gold, 0 0 0 12px black;
+  box-shadow: 0 0 0 2px gold, 0 0 0 4px black;
   border: 2px solid black;
   position: fixed;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -219,45 +246,58 @@ main {
   margin: 10px;
 }
 
-#modalAttempts {
+#modalMoves {
   font-size: 20px;
   margin: 10px;
 }
 
 #modalResetButton {
   width: 50%;
-  margin: 0 auto;
+  margin: 10px auto;
   height: 50px;
   font-size: 30px;
 }
 
 #gameCards {
-  width: 100%;
-  padding: 10px;
-  margin: auto;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  margin: 12px 6px;
 }
 
 .card {
   border: 2px solid black;
-  border-radius: 5%;
+  border-radius: 5px;
   height: 240px;
   width: 160px;
+  margin: 0px 5px 20px 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px;
-  box-shadow: 0 0 0 8px white, 0 0 0 12px black;
-  background: linear-gradient(-45deg, white, black, white);
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  background: linear-gradient(-45deg, white, lightblue, white);
   cursor: pointer;
 }
 
 .card:hover {
-  box-shadow: 0 0 0 8px black, 0 0 0 12px black;
+  box-shadow: 0 0 0 2px blue, 0 0 0 4px black;
+}
+
+#shapesAndColors:hover {
+  box-shadow: 0 0 0 2px darkgreen, 0 0 0 4px black;
+}
+
+#tarot:hover {
+  box-shadow: 0 0 0 2px darkgoldenrod, 0 0 0 4px black;
+}
+
+#playingCards:hover {
+  box-shadow: 0 0 0 2px darkorange, 0 0 0 4px black;
+}
+
+#pokemon:hover {
+  box-shadow: 0 0 0 2px darkred, 0 0 0 4px black;
 }
 
 .card > img {
@@ -268,16 +308,13 @@ main {
 #shapesAndColors {
   height: 240px;
   width: 160px;
+  background: linear-gradient(-45deg, white, green, white);
 }
 
 #tarot {
-  height: 150px;
-  width: 75px;
-  box-shadow: 0 0 0 4px white, 0 0 0 8px black;
-}
-
-#tarot:hover {
-  box-shadow: 0 0 0 4px black, 0 0 0 8px black;
+  height: 200px;
+  width: 120px;
+  background: linear-gradient(-45deg, white, yellow, white);
 }
 
 #tarot > img {
@@ -286,14 +323,10 @@ main {
 }
 
 #playingCards {
-  height: 70px;
-  width: 50px;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
-}
-
-#playingCards:hover,
-#pokemon:hover {
-  box-shadow: 0 0 0 2px black, 0 0 0 4px black;
+  height: 112px;
+  width: 81px;
+  margin: 0px 5px 10px 5px;
+  background: linear-gradient(-45deg, white, orange, white);
 }
 
 #playingCards > img {
@@ -302,9 +335,10 @@ main {
 }
 
 #pokemon {
-  height: 47px;
-  width: 47px;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  height: 80px;
+  width: 80px;
+  margin: 0px 5px 10px 5px;
+  background: linear-gradient(-45deg, white, red, white);
 }
 
 #pokemon > img {
@@ -316,27 +350,32 @@ main {
 }
 
 .incorrect {
-  animation: shake 0.5s ease-in-out;
+  animation: shakeBig 0.5s ease-in-out;
 }
 
-.correct {
-  animation: gradient 15s ease infinite;
-  background: linear-gradient(-45deg, white, gold, white);
-  box-shadow: 0 0 0 8px gold, 0 0 0 12px black !important;
+#tarot.incorrect,
+#playingCards.incorrect,
+#pokemon.incorrect {
+  animation: shakeSmall 0.5s ease-in-out;
 }
 
-#tarot.correct {
-  box-shadow: 0 0 0 4px gold, 0 0 0 8px black !important;
-}
-
+.correct,
+#shapesAndColors.correct,
+#tarot.correct,
 #playingCards.correct,
 #pokemon.correct {
+  background: linear-gradient(-45deg, white, gold, white);
   box-shadow: 0 0 0 2px gold, 0 0 0 4px black !important;
 }
 
 @media (max-width: 1200px) {
   nav {
     position: unset;
+    max-height: none;
+  }
+
+  header {
+    padding: 5px 10px 0px 10px;
   }
 
   #howToPlayButton {
@@ -349,12 +388,11 @@ main {
 
   ul {
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    justify-content: space-evenly;
   }
 
   li {
-    width: 100%;
+    margin-bottom: 2px;
   }
 
   #gameInfo {
@@ -366,54 +404,51 @@ main {
     width: 100%;
   }
 
+  #score {
+    margin-top: 5px;
+  }
+
   #modal {
     font-size: revert;
   }
 
-  #congratulations h1,
-  #congratulations p,
   #modalResetButton {
+    font-size: 16px;
+  }
+
+  #congratulations h1,
+  #congratulations p {
     font-size: revert;
   }
 
-  .card {
-    border: 2px solid black;
-    border-radius: 5%;
-    height: 90px;
-    width: 60px;
-    box-shadow: 0 0 0 4px white, 0 0 0 6px black;
-  }
-
-  .card:hover {
-    box-shadow: 0 0 0 4px black, 0 0 0 6px black;
-  }
-
+  .card,
   #shapesAndColors {
-    height: 90px;
-    width: 60px;
+    height: 120px;
+    width: 90px;
+    margin: 6px;
   }
 
   #tarot {
-    height: 80px;
-    width: 40px;
-    box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+    height: 95px;
+    width: 59px;
   }
 
-  #tarot:hover {
-    box-shadow: 0 0 0 2px black, 0 0 0 4px black;
-  }
-
-  #tarot.correct {
-    box-shadow: 0 0 0 2px gold, 0 0 0 4px black !important;
+  #playingCards {
+    height: 58px;
+    width: 42px;
   }
 
   #pokemon {
-    height: 30px;
-    width: 30px;
+    height: 38px;
+    width: 38px;
+  }
+
+  .incorrect {
+    animation: shakeSmall 0.5s ease-in-out;
   }
 }
 
-@keyframes shake {
+@keyframes shakeBig {
   0% {
     transform: translateX(0);
   }
@@ -439,15 +474,29 @@ main {
   }
 }
 
-@keyframes gradient {
+@keyframes shakeSmall {
   0% {
-    background-position: 0% 50%;
+    transform: translateX(0);
   }
-  50% {
-    background-position: 100% 50%;
+
+  20% {
+    transform: translateX(-5px);
   }
+
+  40% {
+    transform: translateX(5px);
+  }
+
+  60% {
+    transform: translateX(-5px);
+  }
+
+  80% {
+    transform: translateX(5px);
+  }
+
   100% {
-    background-position: 0% 50%;
+    transform: translateX(0);
   }
 }
 

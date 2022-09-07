@@ -6,7 +6,7 @@ onLoad = () => {
   Object.entries(decks).forEach((deck) => {
     let deckName = deck[0];
     let cards = deck[1];
-    document.getElementById(`cardType ${deckName}`).addEventListener(
+    document.getElementById(`difficulty ${deckName}`).addEventListener(
       "click",
       (handleClick = () => {
         addCards(cards, `${deckName}`);
@@ -28,7 +28,7 @@ onLoad = () => {
       });
       document.getElementById("modalContainer").classList.remove("winner");
       document.getElementById("modalTime").innerHTML = ``;
-      document.getElementById("modalAttempts").innerHTML = ``;
+      document.getElementById("modalMoves").innerHTML = ``;
     })
   );
   document.getElementById("modalResetButton").addEventListener(
@@ -45,7 +45,7 @@ onLoad = () => {
       });
       document.getElementById("modalContainer").classList.remove("winner");
       document.getElementById("modalTime").innerHTML = ``;
-      document.getElementById("modalAttempts").innerHTML = ``;
+      document.getElementById("modalMoves").innerHTML = ``;
     })
   );
   document.getElementById("howToPlayButton").firstElementChild.addEventListener(
@@ -107,7 +107,6 @@ addCards = (deck, id) => {
       })
     );
   });
-  console.log("cards dealt");
 };
 
 flipCard = (card, num) => {
@@ -120,20 +119,17 @@ flipCard = (card, num) => {
     !clickedCard.classList.contains("locked") &&
     !clickedCard.classList.contains("flipped")
   ) {
-    let attempts = parseInt(document.getElementById("attempts").innerHTML) + 1;
-    document.getElementById("attempts").innerHTML = attempts;
-    if (attempts === 1) {
+    let moves = parseInt(document.getElementById("moves").innerHTML) + 1;
+    document.getElementById("moves").innerHTML = moves;
+    if (moves === 1) {
       gameTimer("start");
     }
     if (cardsFlipped === 0 && clickedCard.classList.contains("hidden")) {
       clickedCard.classList.remove("hidden");
       clickedCard.classList.add("flipped");
-      console.log("flipped first card");
     } else if (cardsFlipped === 1 && clickedCard.classList.contains("hidden")) {
       clickedCard.classList.remove("hidden");
       clickedCard.classList.add("flipped");
-      console.log("flipped second card");
-      console.log("comparing cards");
       checkForMatch(`${card} ${num}`);
     }
   }
@@ -150,7 +146,6 @@ checkForMatch = () => {
     document.getElementById(card1).classList.add("locked");
     document.getElementById(card2).classList.remove("flipped");
     document.getElementById(card2).classList.add("locked");
-    console.log("cards match");
     checkForWin();
   } else {
     document.getElementById(card1).parentNode.classList.add("incorrect");
@@ -163,31 +158,29 @@ checkForMatch = () => {
       document.getElementById(card2).classList.remove("flipped");
       document.getElementById(card2).classList.add("hidden");
     }, 750);
-    console.log("cards do not match");
   }
 };
 
 checkForWin = () => {
-  console.log("checking for win");
   if (
     document.querySelectorAll(".hidden").length === 0 &&
     document.querySelectorAll(".flipped").length === 0
   ) {
-    console.log("win!");
     document.getElementById("modalContainer").classList.add("winner");
     document.getElementById(
       "congratulations"
     ).innerHTML = `<h1>Congratulations!</h1><p>You matched all cards!</p>`;
-    document.getElementById("modalTime").innerHTML =
-      document.getElementById("timer").innerHTML;
-    document.getElementById("modalAttempts").innerHTML =
-      document.getElementById("attempts").innerHTML;
+    document.getElementById("modalTime").innerHTML = `Time: ${
+      document.getElementById("timer").innerHTML
+    }`;
+    document.getElementById("modalMoves").innerHTML = `Moves: ${
+      document.getElementById("moves").innerHTML
+    }`;
     gameTimer("win");
   }
 };
 
 startTimer = () => {
-  console.log("timer ticking");
   let second = parseInt(document.getElementById("seconds").innerHTML);
   let minute = parseInt(document.getElementById("minutes").innerHTML);
   let hour = parseInt(document.getElementById("hours").innerHTML);
@@ -202,7 +195,6 @@ startTimer = () => {
     document.getElementById("minutes").innerHTML = pad(00);
     document.getElementById("hours").innerHTML = pad(++hour);
   } else if (hour === 99) {
-    console.log("timer stopped");
     clearInterval(interval);
     document.getElementById(
       "timer"
@@ -216,21 +208,18 @@ gameTimer = (val) => {
             >00</span
           >`;
   if (val === "start") {
-    console.log("timer started");
     interval = setInterval(startTimer, 1000);
     document.getElementById("timer").innerHTML = timerWipe;
   } else if (val === "win") {
-    console.log("timer stopped");
     clearInterval(interval);
   } else {
-    console.log("timer stopped");
     document.getElementById("resetButton").innerHTML = `Reset`;
     document.querySelectorAll(".correct").forEach((card) => {
       card.classList.remove("correct");
     });
     document.getElementById("timer").innerHTML = timerWipe;
     document.getElementById("congratulations").innerHTML = ``;
-    document.getElementById("attempts").innerHTML = 0;
+    document.getElementById("moves").innerHTML = 0;
     clearInterval(interval);
   }
 };
