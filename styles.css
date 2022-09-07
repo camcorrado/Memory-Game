@@ -312,6 +312,61 @@ main {
   box-shadow: 0 0 0 8px gold, 0 0 0 12px black !important;
 }
 
+@media (max-width: 1200px) {
+  nav {
+    position: unset;
+  }
+
+  #howToPlayButton {
+    margin-right: 5px;
+  }
+
+  .dropdownVisible {
+    overflow: scroll;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  li {
+    width: 100%;
+  }
+
+  #gameInfo {
+    height: auto;
+    justify-content: center;
+  }
+
+  #title h1 {
+    width: 100%;
+  }
+
+  #modal {
+    font-size: revert;
+  }
+
+  #congratulations h1,
+  #congratulations p,
+  #modalResetButton {
+    font-size: revert;
+  }
+
+  .card {
+    border: 2px solid black;
+    border-radius: 5%;
+    height: 180px;
+    width: 120px;
+  }
+
+  #shapesAndColors {
+    height: 150px;
+    width: 100px;
+  }
+}
+
 @keyframes shake {
   0% {
     transform: translateX(0);
