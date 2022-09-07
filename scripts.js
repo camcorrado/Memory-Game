@@ -10,6 +10,16 @@ onLoad = () => {
       "click",
       (handleClick = () => {
         addCards(cards, `${deckName}`);
+        document
+          .getElementById("howToPlay")
+          .classList.remove("dropdownVisible");
+        document.getElementById("howToPlay").classList.add("dropdownHidden");
+        document
+          .getElementById("changeDifficulty")
+          .classList.remove("dropdownVisible");
+        document
+          .getElementById("changeDifficulty")
+          .classList.add("dropdownHidden");
         gameTimer("reset");
       })
     );

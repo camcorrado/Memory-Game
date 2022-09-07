@@ -191,6 +191,7 @@ header {
 
 button {
   cursor: pointer;
+  color: black;
 }
 
 main {
