@@ -62,11 +62,11 @@ onLoad = () => {
     })
   );
   document
-    .getElementById("changeCardStyleButton")
+    .getElementById("changeDifficultyButton")
     .firstElementChild.addEventListener(
       "click",
       (handleClick = () => {
-        let button = document.getElementById("changeCardStyle");
+        let button = document.getElementById("changeDifficulty");
         if (button.classList[0] === "dropdownHidden") {
           button.classList.add("dropdownVisible");
           button.classList.remove("dropdownHidden");

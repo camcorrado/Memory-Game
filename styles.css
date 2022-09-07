@@ -38,6 +38,8 @@ body.preload * {
 nav {
   width: 100%;
   position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -55,7 +57,7 @@ nav ul {
   margin: 0 0 5px 0;
 }
 
-#changeCardStyleButton {
+#changeDifficultyButton {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -243,8 +245,8 @@ main {
 .card {
   border: 2px solid black;
   border-radius: 5%;
-  height: 300px;
-  width: 200px;
+  height: 240px;
+  width: 160px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -264,13 +266,18 @@ main {
 }
 
 #shapesAndColors {
-  height: 200px;
-  width: 133.33px;
+  height: 240px;
+  width: 160px;
 }
 
 #tarot {
-  height: 200px;
-  width: 100px;
+  height: 150px;
+  width: 75px;
+  box-shadow: 0 0 0 4px white, 0 0 0 8px black;
+}
+
+#tarot:hover {
+  box-shadow: 0 0 0 4px black, 0 0 0 8px black;
 }
 
 #tarot > img {
@@ -279,8 +286,14 @@ main {
 }
 
 #playingCards {
-  height: 140px;
-  width: 100px;
+  height: 70px;
+  width: 50px;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+}
+
+#playingCards:hover,
+#pokemon:hover {
+  box-shadow: 0 0 0 2px black, 0 0 0 4px black;
 }
 
 #playingCards > img {
@@ -289,8 +302,9 @@ main {
 }
 
 #pokemon {
-  height: 100px;
-  width: 100px;
+  height: 47px;
+  width: 47px;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
 #pokemon > img {
@@ -309,6 +323,15 @@ main {
   animation: gradient 15s ease infinite;
   background: linear-gradient(-45deg, white, gold, white);
   box-shadow: 0 0 0 8px gold, 0 0 0 12px black !important;
+}
+
+#tarot.correct {
+  box-shadow: 0 0 0 4px gold, 0 0 0 8px black !important;
+}
+
+#playingCards.correct,
+#pokemon.correct {
+  box-shadow: 0 0 0 2px gold, 0 0 0 4px black !important;
 }
 
 @media (max-width: 1200px) {
@@ -356,13 +379,37 @@ main {
   .card {
     border: 2px solid black;
     border-radius: 5%;
-    height: 180px;
-    width: 120px;
+    height: 90px;
+    width: 60px;
+    box-shadow: 0 0 0 4px white, 0 0 0 6px black;
+  }
+
+  .card:hover {
+    box-shadow: 0 0 0 4px black, 0 0 0 6px black;
   }
 
   #shapesAndColors {
-    height: 150px;
-    width: 100px;
+    height: 90px;
+    width: 60px;
+  }
+
+  #tarot {
+    height: 80px;
+    width: 40px;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  }
+
+  #tarot:hover {
+    box-shadow: 0 0 0 2px black, 0 0 0 4px black;
+  }
+
+  #tarot.correct {
+    box-shadow: 0 0 0 2px gold, 0 0 0 4px black !important;
+  }
+
+  #pokemon {
+    height: 30px;
+    width: 30px;
   }
 }
 
