@@ -165,7 +165,6 @@ button {
 
 main {
   padding: 5px 10px;
-  width: 100vw;
 }
 
 #modalContainer {
@@ -318,11 +317,11 @@ main {
   }
 
   #howToPlayButton {
-    margin-right: 5px;
+    margin-right: 10px;
   }
 
   .dropdownVisible {
-    overflow: scroll;
+    max-height: 100%;
   }
 
   ul {
