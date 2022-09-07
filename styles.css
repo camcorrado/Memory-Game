@@ -31,66 +31,112 @@ body {
   background-color: white;
 }
 
+body.preload * {
+  animation-duration: 0s !important;
+}
+
 nav {
-  background-color: gray;
+  width: 100%;
+  position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 5px 10px;
-  border: 2px solid black;
 }
 
 nav h1 {
   margin: 0 0 5px 0;
+  text-align: center;
+  cursor: pointer;
 }
 
-nav p {
+nav p,
+nav ul {
   margin: 0 0 5px 0;
-}
-
-.dropdownHidden {
-  display: none;
-}
-
-.dropdownVisible {
-  display: block !important;
 }
 
 #changeCardStyleButton {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  width: 400px;
+  height: 100%;
+  background-color: white;
 }
 
-#changeCardStyleButton h1 {
-  text-align: right;
+#howToPlayButton {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  width: 400px;
+  height: 100%;
+  background-color: white;
 }
 
-#changeCardStyle {
-  margin: 0;
+.dropdownHidden {
+  max-height: 0px;
+  overflow: hidden;
+  animation: dropdownUp 1s;
+}
+
+.dropdownVisible {
+  max-height: 200px;
+  overflow: hidden;
+  animation: dropdownDown 1s;
 }
 
 ul {
   list-style: none;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px;
 }
 
 li {
-  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 li:hover {
   color: blue;
 }
 
+header {
+  padding: 5px 10px;
+}
+
+#gameInfo {
+  height: 175px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0),
+      black,
+      rgba(0, 0, 0, 0)
+    )
+    0 0 1 0;
+}
+
 #title > h1 {
   font-size: 50px;
   font-family: "Carattere", sans-serif;
   text-align: center;
-  margin: 10px auto;
-  width: 40%;
-  border-width: 3px;
+  margin: 0px auto 10px auto;
+  width: 30%;
+  border-width: 1px;
   border-style: solid;
   border-image: linear-gradient(
       90deg,
@@ -101,39 +147,93 @@ li:hover {
     0 0 1 0;
 }
 
-#gameInfo {
+#score {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-width: 3px;
-  border-style: solid;
-  border-image: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0),
-      black,
-      rgba(0, 0, 0, 0)
-    )
-    0 0 1 0;
-  padding: 10px;
+  padding-bottom: 10px;
 }
 
-.reset {
-  max-width: 100px;
+#score div {
+  margin-bottom: 2px;
 }
 
-#winner {
-  margin: 70px auto;
-  padding: 20px;
-  background: gold;
+button {
+  cursor: pointer;
+}
+
+main {
+  padding: 5px 10px;
+  width: 100vw;
+}
+
+#modalContainer {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+  z-index: 2;
+  box-shadow: 0 0 0 8px gold, 0 0 0 12px black;
+  animation: fadeIn 0.5s;
+}
+
+#modal {
   border-radius: 5px;
-  width: 30%;
-  position: relative;
-  transition: all 1s ease-in-out;
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(-45deg, white, gold, white);
+  box-shadow: 0 0 0 8px gold, 0 0 0 12px black;
+  border: 2px solid black;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.winner {
+  display: block !important;
+}
+
+#congratulations h1 {
+  font-size: 80px;
+  margin: 10px;
+}
+
+#congratulations p {
+  font-size: 30px;
+  margin: 10px;
+}
+
+#modalTime {
+  font-size: 20px;
+  margin: 10px;
+}
+
+#modalAttempts {
+  font-size: 20px;
+  margin: 10px;
+}
+
+#modalResetButton {
+  width: 50%;
+  margin: 0 auto;
+  height: 50px;
+  font-size: 30px;
 }
 
 #gameCards {
   width: 100%;
+  padding: 10px;
+  margin: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -151,6 +251,8 @@ li:hover {
   align-items: center;
   margin: 20px;
   box-shadow: 0 0 0 8px white, 0 0 0 12px black;
+  background: linear-gradient(-45deg, white, black, white);
+  cursor: pointer;
 }
 
 .card:hover {
@@ -162,17 +264,38 @@ li:hover {
   max-width: 100%;
 }
 
-#playingCards > img {
-  clip-path: inset(5px 5px 5px 5px);
+#shapesAndColors {
+  height: 200px;
+  width: 133.33px;
+}
+
+#tarot {
+  height: 200px;
+  width: 100px;
 }
 
 #tarot > img {
-  clip-path: inset(5px 5px 5px 5px);
+  border-radius: 5px;
   height: 100%;
 }
 
-#pokemon > img {
+#playingCards {
+  height: 140px;
+  width: 100px;
+}
+
+#playingCards > img {
+  height: 100%;
+  max-width: none;
+}
+
+#pokemon {
   height: 100px;
+  width: 100px;
+}
+
+#pokemon > img {
+  width: 90%;
 }
 
 .hidden {
@@ -224,5 +347,32 @@ li:hover {
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes dropdownUp {
+  0% {
+    max-height: 200px;
+  }
+  100% {
+    max-height: 0px;
+  }
+}
+
+@keyframes dropdownDown {
+  0% {
+    max-height: 0px;
+  }
+  100% {
+    max-height: 200px;
   }
 }

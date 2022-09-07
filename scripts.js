@@ -1,4 +1,7 @@
 onLoad = () => {
+  setTimeout(function () {
+    document.body.classList.remove("preload");
+  }, 1000);
   addCards(decks.shapes, "shapes");
   Object.entries(decks).forEach((deck) => {
     let deckName = deck[0];
@@ -23,6 +26,26 @@ onLoad = () => {
         card.classList.remove("flipped");
         card.classList.remove("locked");
       });
+      document.getElementById("modalContainer").classList.remove("winner");
+      document.getElementById("modalTime").innerHTML = ``;
+      document.getElementById("modalAttempts").innerHTML = ``;
+    })
+  );
+  document.getElementById("modalResetButton").addEventListener(
+    "click",
+    (handleClick = () => {
+      gameTimer("reset");
+      let deck =
+        document.getElementById("gameCards").firstElementChild.classList[3];
+      addCards(decks[deck], deck);
+      document.querySelectorAll(".cardContent").forEach((card) => {
+        card.classList.add("hidden");
+        card.classList.remove("flipped");
+        card.classList.remove("locked");
+      });
+      document.getElementById("modalContainer").classList.remove("winner");
+      document.getElementById("modalTime").innerHTML = ``;
+      document.getElementById("modalAttempts").innerHTML = ``;
     })
   );
   document.getElementById("howToPlayButton").firstElementChild.addEventListener(
@@ -38,7 +61,6 @@ onLoad = () => {
       }
     })
   );
-
   document
     .getElementById("changeCardStyleButton")
     .firstElementChild.addEventListener(
@@ -152,10 +174,14 @@ checkForWin = () => {
     document.querySelectorAll(".flipped").length === 0
   ) {
     console.log("win!");
+    document.getElementById("modalContainer").classList.add("winner");
     document.getElementById(
       "congratulations"
-    ).innerHTML = `Congratulations! You've matched all cards!`;
-    document.getElementById("resetButton").innerHTML = `Play Again!`;
+    ).innerHTML = `<h1>Congratulations!</h1><p>You matched all cards!</p>`;
+    document.getElementById("modalTime").innerHTML =
+      document.getElementById("timer").innerHTML;
+    document.getElementById("modalAttempts").innerHTML =
+      document.getElementById("attempts").innerHTML;
     gameTimer("win");
   }
 };
@@ -193,6 +219,9 @@ gameTimer = (val) => {
     console.log("timer started");
     interval = setInterval(startTimer, 1000);
     document.getElementById("timer").innerHTML = timerWipe;
+  } else if (val === "win") {
+    console.log("timer stopped");
+    clearInterval(interval);
   } else {
     console.log("timer stopped");
     document.getElementById("resetButton").innerHTML = `Reset`;

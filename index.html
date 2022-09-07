@@ -1,51 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <header>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Memory Game</title>
     <link rel="stylesheet" href="styles.css" />
-  </header>
-  <body>
+  </head>
+  <body class="preload">
     <nav>
       <div id="howToPlayButton">
         <h1>How To Play</h1>
         <div id="howToPlay" class="dropdownHidden">
-          <p>Match all the cards to win!</p>
-          <p>Choose a card, then choose another card!</p>
-          <p>If the cards match, they will remain flipped & turn golden.</p>
-          <p>If the cards do not match, they will flip back over.</p>
-          <p>Try to remember the cards before they've flipped back over!</p>
-          <p>Try changing the Card Style for a greater challenge!</p>
+          <p>
+            Match all the cards to win! Choose a card, then choose another card.
+            If the cards match, they will remain flipped & turn golden. If the
+            cards do not match, they will flip back over. Try to remember the
+            cards before they've flipped back over. Try changing the Card Style
+            for a greater challenge!
+          </p>
         </div>
       </div>
       <div id="changeCardStyleButton">
-        <h1>Change Card Style</h1>
+        <h1>Change Difficulty & Card Style</h1>
         <div id="changeCardStyle" class="dropdownHidden">
           <ul>
-            <li id="cardType shapes">Shapes</li>
-            <li id="cardType shapesAndColors">Shapes & Colors</li>
-            <li id="cardType tarot">Tarot</li>
-            <li id="cardType playingCards">Playing Cards</li>
-            <li id="cardType pokemon">Pokemon</li>
+            <li id="cardType shapes">
+              <span>Shapes</span><span>(Beginner)</span>
+            </li>
+            <li id="cardType shapesAndColors">
+              <span>Shapes & Colors</span><span>(Easy)</span>
+            </li>
+            <li id="cardType tarot">
+              <span>Tarot</span><span>(Moderate)</span>
+            </li>
+            <li id="cardType playingCards">
+              <span>Playing Cards</span><span>(Hard)</span>
+            </li>
+            <li id="cardType pokemon">
+              <span>Pokemon</span><span>(Extreme)</span>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
-    <main>
-      <section id="title">
-        <h1>Memory Game</h1>
-      </section>
+    <header>
       <section id="gameInfo">
-        <div id="congratulations"></div>
-        <div id="timer">
-          <span id="hours">00</span>:<span id="minutes">00</span>:<span
-            id="seconds"
-            >00</span
-          >
+        <div id="title">
+          <h1>Memory Game</h1>
         </div>
-        <div id="attempts">0</div>
-        <button id="resetButton">Reset</button>
+        <div id="score">
+          <div id="timer">
+            <span id="hours">00</span>:<span id="minutes">00</span>:<span
+              id="seconds"
+              >00</span
+            >
+          </div>
+          <div id="attempts">0</div>
+          <button id="resetButton" type="button">Reset</button>
+        </div>
+      </section>
+    </header>
+    <main>
+      <section id="modalContainer">
+        <div id="modal">
+          <div id="congratulations"></div>
+          <div id="modalTime"></div>
+          <div id="modalAttempts"></div>
+          <button id="modalResetButton" type="button">Play Again!</button>
+        </div>
       </section>
       <section id="gameCards"></section>
     </main>
