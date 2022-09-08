@@ -18,7 +18,9 @@ Lacking portfolio projects built with only HTML, CSS, & JavaScript, I decided to
 
 ![Hard Playing Cards](https://i.imgur.com/gh5iK3n.png)
 
-![Extreme Pokemon](https://i.imgur.com/35adq9d.png)
+![Extreme Pokemon 1](https://i.imgur.com/35adq9d.png)
+
+![Extreme Pokemon 2](https://i.imgur.com/ZKrfqb3.png)
 
 ![Win](https://i.imgur.com/tSAqIhO.png)
 
