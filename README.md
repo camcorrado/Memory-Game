@@ -1,6 +1,6 @@
 # Memory Game
 
-A memory matching game built with vanilla HTML, CSS, & JavaScript.
+A card matching memory game built with vanilla HTML, CSS, & JavaScript.
 
 ## Motivation
 
