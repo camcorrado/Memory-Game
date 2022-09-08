@@ -4,7 +4,7 @@ A card matching memory game built with vanilla HTML, CSS, & JavaScript.
 
 ## Motivation
 
-Lacking portfolio projects built with only HTML, CSS, & JavaScript, I decided to create a fun, interactive game to showcase this skillset. This app provides difficulty options that switch up the card styles as well as feedback for correct and incorrect guesses.
+Lacking portfolio projects built with only HTML, CSS, & JavaScript, I decided to create a fun, interactive game to showcase this skill set. This app provides difficulty options that switch up the card styles as well as feedback for correct and incorrect guesses.
 
 ## Screenshots
 
